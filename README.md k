@@ -1,0 +1,36 @@
+# Jurassic-park-code
+#include <stdio.h>
+using namespace std;
+static int ret[100101];
+int main()
+{
+int t;
+scanf("%d",&t);
+while(t--)
+{
+int n,m,q,p,r,k;
+scanf("%d%d%d%d%d%d",&n,&m,&q,&p,&r,&k);
+int count1=0;
+for(int time=0;time<k;time++)
+{if((time+1)%r==0)
+{
+if(m>0)
+{m--;
+q++;}
+}
+n+=ret[time];
+count1+=ret[time];
+ret[time]=0;
+if(n>q) {n=n-q; ret[p+time]=q; q=0;
+}
+else {q=q-n; ret[p+time]=n; n=0;
+}
+}
+printf("%d %d %d %d\n",n,count1,m,q);
+int lim=k+p;
+for(int i=k;i<lim;i++)
+{
+ret[i]=0;
+}
+}
+return 0;}
